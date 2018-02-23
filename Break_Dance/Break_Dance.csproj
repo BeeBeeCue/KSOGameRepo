@@ -341,6 +341,7 @@
     <Compile Include="Assets\Cinemachine\Timeline\CinemachineMixer.cs" />
     <Compile Include="Assets\Cinemachine\Timeline\CinemachineShot.cs" />
     <Compile Include="Assets\Cinemachine\Timeline\CinemachineTrack.cs" />
+    <Compile Include="Assets\MiniMapToggle.cs" />
     <Compile Include="Assets\Script\AudioManagerBrackyes.cs" />
     <Compile Include="Assets\Script\BlinkingText.cs" />
     <Compile Include="Assets\Script\ButtonClick.cs" />

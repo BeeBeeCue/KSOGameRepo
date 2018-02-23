@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/GameScenes/WelcomeScreen.unity
+- path: Assets/GameScenes/SafePlace.unity
   isLoaded: 1
   isActive: 1

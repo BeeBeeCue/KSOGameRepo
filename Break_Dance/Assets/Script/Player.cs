@@ -64,7 +64,7 @@ namespace AssemblyCSharp
 			switch (input) 
 			{
 			case "up":
-				transform.position = new Vector2 (transform.position.x, (float)(transform.position.y+distance));
+				transform.position = new Vector2 (transform.position.x,(float)( transform.position.y+distance));
 				break;
 			case "left":
 				transform.position = new Vector2 ((float)(transform.position.x - distance), transform.position.y);
@@ -126,8 +126,10 @@ namespace AssemblyCSharp
 					wallCheck = Physics2D.Linecast (this.transform.position, upCheck.transform.position, wall);
 					if (wallCheck.collider == null) {
 						this.Move ("up");
+						
 					}
                     playerInput = "W";
+					
                 }
 			} 
 			else if(!playerMode) 
@@ -147,6 +149,7 @@ namespace AssemblyCSharp
 				else if (Input.GetKeyDown (KeyCode.W)) 
 				{
 					playerAnswer += "W";
+					
 				}
 
 			}   

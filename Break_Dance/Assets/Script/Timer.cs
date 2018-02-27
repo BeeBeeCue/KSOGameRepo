@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour {
     private int frames, second;
-    private AudioSource beat;
+    private Transform playerPosition;
+    private bool playerMissedBeat;
+    
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         frames = 0;
         second = 0;
-        beat = GetComponent<AudioSource>();
-        
-	}
+        playerMissedBeat = false;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -19,7 +21,6 @@ public class Timer : MonoBehaviour {
         switch (frames)
         {
             case 59:
-                beat.Play();
                 break;
             case 60:
                 frames = 0;
@@ -27,6 +28,22 @@ public class Timer : MonoBehaviour {
                 break;
         }
 	}
+
+    public void LostPlayer()
+    {
+        playerPosition = null;
+    }
+
+    public bool IsPlayerMissingABeat()
+    {
+        return playerMissedBeat;
+    }
+
+    public void Alarm(Transform position)
+    {
+        playerPosition = position;
+        playerMissedBeat = true;
+    }
 
     public int CountBeat()
     {

@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/GameScenes/SafePlace.unity
+=======
+- path: Assets/GameScenes/GameScene.unity
+>>>>>>> 231ad710e912a711e760469d030f215ab5e00b4f
   isLoaded: 1
   isActive: 1

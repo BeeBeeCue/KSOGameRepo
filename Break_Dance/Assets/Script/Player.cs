@@ -6,19 +6,20 @@ namespace AssemblyCSharp
 
     public class Player: MonoBehaviour
 	{
+        
 		public LayerMask wall, interactables;
 		RaycastHit2D wallCheck;
         public Transform upCheck, downCheck, leftCheck, rightCheck, centre;
         private Transform temp;
 		public float distance;
-		private bool _look_right = true;
+		private bool _look_right;
 		private  bool playerMode = true;
 		private string playerAnswer, playerInput;
         private Timer timer;
-        private int frameDelay;
-		//playerMode, true means player in movement mode, false = puzzle mode
+        private AudioSource beat;
+        //playerMode, true means player in movement mode, false = puzzle mode
 
-		public Player ()
+        public Player ()
 		{
 
 		}
@@ -78,7 +79,7 @@ namespace AssemblyCSharp
 				transform.position = new Vector2 (transform.position.x,(float)( transform.position.y-distance));
 				break;
 			}
-            frameDelay = timer.CountBeat();
+            //frameDelay = timer.CountBeat();
             //player sprite flipping when turn left and right during movement
             Vector3 localScale = transform.localScale;
 			if (( (_look_right == true) && (localScale.x < 0)) || (_look_right == false) && (localScale.x >0))
@@ -95,13 +96,19 @@ namespace AssemblyCSharp
         
 		void Start()
 		{
+            _look_right = true;
             playerInput = null;
 			playerAnswer = null;
-            timer = GetComponentInChildren<Timer>();
-		}
+            timer = GameObject.Find("Timer").GetComponent<Timer>();
+            beat = GetComponent<AudioSource>();
+        }
         
 		void Update()
 		{
+            if (timer.CountBeat() == 59)
+            {
+                beat.Play();
+            }
          	if (playerMode) 
 			{
 				if (Input.GetKeyDown (KeyCode.A)) {
@@ -132,7 +139,6 @@ namespace AssemblyCSharp
 					if (wallCheck.collider == null)
                     {
 						this.Move ("up");
-                        frameDelay = timer.CountBeat();
                     }
                     playerInput = "W";
 					
@@ -159,11 +165,11 @@ namespace AssemblyCSharp
 				}
 			}
 
-            if (frameDelay >= 0)
+            if (timer.CountBeat()>10 && timer.CountBeat()<55)
             {
-                Debug.Log(frameDelay);
+                timer.Alarm(GetComponent<Transform>());
             }
-            frameDelay = -1;
+            
             Debug.DrawLine(centre.transform.position, leftCheck.transform.position);
             Debug.DrawLine(centre.transform.position, upCheck.transform.position);
             Debug.DrawLine(centre.transform.position, rightCheck.transform.position);

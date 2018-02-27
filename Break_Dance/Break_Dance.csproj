@@ -345,7 +345,7 @@
     <Compile Include="Assets\Script\AudioManagerBrackyes.cs" />
     <Compile Include="Assets\Script\BlinkingText.cs" />
     <Compile Include="Assets\Script\ButtonClick.cs" />
-    <Compile Include="Assets\Script\Control.cs" />
+    <Compile Include="Assets\Script\Demon.cs" />
     <Compile Include="Assets\Script\Door.cs" />
     <Compile Include="Assets\Script\GameCanvas.cs" />
     <Compile Include="Assets\Script\GameMaster.cs" />

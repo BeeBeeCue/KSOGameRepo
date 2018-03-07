@@ -1,12 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/GameScenes/office02.unity
-=======
-<<<<<<< HEAD
-- path: Assets/GameScenes/SafePlace.unity
-=======
-- path: Assets/GameScenes/GameScene.unity
->>>>>>> 231ad710e912a711e760469d030f215ab5e00b4f
->>>>>>> a407529d53645d9205f24b5f0230562057dfae84
+- path: Assets/GameScenes/Puzzle.unity
   isLoaded: 1
   isActive: 1

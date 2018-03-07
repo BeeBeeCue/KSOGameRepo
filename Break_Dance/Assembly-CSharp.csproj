@@ -108,15 +108,15 @@
      <Compile Include="Assets\Script\AudioManagerBrackyes.cs" />
      <Compile Include="Assets\Script\BlinkingText.cs" />
      <Compile Include="Assets\Script\ButtonClick.cs" />
-     <Compile Include="Assets\Script\Control.cs" />
+     <Compile Include="Assets\Script\Demon.cs" />
      <Compile Include="Assets\Script\Door.cs" />
-     <Compile Include="Assets\Script\EnemyMovement.cs" />
      <Compile Include="Assets\Script\GameCanvas.cs" />
      <Compile Include="Assets\Script\GameMaster.cs" />
      <Compile Include="Assets\Script\Interactables.cs" />
      <Compile Include="Assets\Script\MainMenu.cs" />
      <Compile Include="Assets\Script\PauseMenu.cs" />
      <Compile Include="Assets\Script\Player.cs" />
+     <Compile Include="Assets\Script\PuzzleGameController.cs" />
      <Compile Include="Assets\Script\SettingsMenu.cs" />
      <Compile Include="Assets\Script\Sound.cs" />
      <Compile Include="Assets\Script\Timer.cs" />

@@ -1,7 +1,7 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Break_Dance", "Break_Dance.csproj", "{38C354FE-3460-81B6-C5E4-46B1E0D89DBC}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Break_Dance", "Assembly-CSharp.csproj", "{2936372D-D36C-FECB-5814-78591B5E099F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Break_Dance", "Assembly-CSharp-Editor.csproj", "{8EAA928D-269A-1B4F-7AFD-14C5F5168AC7}"
 EndProject
@@ -11,16 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-<<<<<<< HEAD
-		{38C354FE-3460-81B6-C5E4-46B1E0D89DBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{38C354FE-3460-81B6-C5E4-46B1E0D89DBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{38C354FE-3460-81B6-C5E4-46B1E0D89DBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{38C354FE-3460-81B6-C5E4-46B1E0D89DBC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{562D4900-3877-5332-0EBD-3D3FB15C88D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{562D4900-3877-5332-0EBD-3D3FB15C88D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{562D4900-3877-5332-0EBD-3D3FB15C88D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{562D4900-3877-5332-0EBD-3D3FB15C88D7}.Release|Any CPU.Build.0 = Release|Any CPU
-=======
 		{2936372D-D36C-FECB-5814-78591B5E099F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2936372D-D36C-FECB-5814-78591B5E099F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2936372D-D36C-FECB-5814-78591B5E099F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -29,9 +19,11 @@ Global
 		{8EAA928D-269A-1B4F-7AFD-14C5F5168AC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EAA928D-269A-1B4F-7AFD-14C5F5168AC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EAA928D-269A-1B4F-7AFD-14C5F5168AC7}.Release|Any CPU.Build.0 = Release|Any CPU
->>>>>>> 231ad710e912a711e760469d030f215ab5e00b4f
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 
 
+
+
 namespace AssemblyCSharp
 {
 
@@ -22,7 +24,9 @@ namespace AssemblyCSharp
 		{
 
 		}
-        
+
+
+
 		//to set player mode
 		public void SetPlayerMode(string x)
 		{
@@ -102,7 +106,7 @@ namespace AssemblyCSharp
         
 		void Update()
 		{
-         	if (playerMode) 
+            if (playerMode && !PauseMenu.GameIsPaused) 
 			{
 				if (Input.GetKeyDown (KeyCode.A)) {
 					wallCheck = Physics2D.Linecast (centre.transform.position, leftCheck.transform.position, wall);

@@ -7,54 +7,116 @@ public class PauseMenu : MonoBehaviour
 {
 
     public static bool GameIsPaused = false;
+    public static bool InOptionsMenu = false;
+    public static bool InCreditsMenu = false;
+    public static bool InVolumeMenu = false;
+    public static bool InControlsMenu = false;
+
     public GameObject pauseMenuUI;
-	
-	
-	// Update is called once per frame
-	void Update ()
+    public GameObject menuUI;
+    public GameObject creditsUI;
+    public GameObject volumeUI;
+    public GameObject controlsUI;
+
+
+
+
+
+
+
+    // Update is called once per frame
+    void Update()
     {
-		if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (GameIsPaused)
+            Debug.Log("ESC pressed");
+            if (GameIsPaused == true && InOptionsMenu == true)
+            {
+                BackToPauseMenu();
+            }
+            else if (GameIsPaused == true)
             {
                 Resume();
             }
-            else
+            else if (GameIsPaused == true && InCreditsMenu == true)
+            {
+                ExitCreditsMenu();
+            }
+            else if (GameIsPaused == true && InVolumeMenu == true)
+            {
+                ExitVolumeMenu();
+            }
+            else if (GameIsPaused == true && InControlsMenu == true)
+            {
+                ExitControlsMenu();
+            }
+            else if (GameIsPaused == false)
             {
                 Pause();
             }
         }
-	}
+
+    }
 
 
+    public void ExitCreditsMenu()
+    {
+        Time.timeScale = 0f;
+        pauseMenuUI.SetActive(true);
+        creditsUI.SetActive(false);
 
-    public void Resume ()
+
+    }
+    public void ExitVolumeMenu()
+    {
+        Time.timeScale = 0f;
+        pauseMenuUI.SetActive(true);
+        volumeUI.SetActive(false);
+
+
+    }
+    public void ExitControlsMenu()
+    {
+        Time.timeScale = 0f;
+        pauseMenuUI.SetActive(true);
+        controlsUI.SetActive(false);
+    }
+
+    public void BackToPauseMenu()
+    {
+        Time.timeScale = 0f;
+        pauseMenuUI.SetActive(true);
+        menuUI.SetActive(false);
+    }
+    public void Resume()
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
         //AudioListener.pause = false;
     }
-
-    void Pause ()
+    public void Pause()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
         //AudioListener.pause = true;
     }
-
     public void LoadMenu()
     {
-        Time.timeScale = 1f;
+        pauseMenuUI.SetActive(false);
+        Time.timeScale = 0f;
+        GameIsPaused = true;
+        menuUI.SetActive(true);
         SceneManager.LoadScene("Menu");
+        InOptionsMenu = true;
     }
-
     public void QuitGame()
     {
         Debug.Log("Quit Game");
         SceneManager.LoadScene("WelcomeScreen");
     }
+
 
 
 }

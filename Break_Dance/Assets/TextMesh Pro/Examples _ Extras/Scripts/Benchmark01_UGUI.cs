@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
+#pragma warning disable CS0234 // The type or namespace name 'UI' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)
 using UnityEngine.UI;
+#pragma warning restore CS0234 // The type or namespace name 'UI' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)
 
 
 namespace TMPro.Examples
@@ -17,7 +19,9 @@ namespace TMPro.Examples
 
         private TextMeshProUGUI m_textMeshPro;
         //private TextContainer m_textContainer;
+#pragma warning disable CS0246 // The type or namespace name 'Text' could not be found (are you missing a using directive or an assembly reference?)
         private Text m_textMesh;
+#pragma warning restore CS0246 // The type or namespace name 'Text' could not be found (are you missing a using directive or an assembly reference?)
 
         private const string label01 = "The <#0050FF>count is: </color>";
         private const string label02 = "The <color=#0050FF>count is: </color>";

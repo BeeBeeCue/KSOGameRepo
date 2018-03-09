@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
+#pragma warning disable CS0234 // The type or namespace name 'UI' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)
 using UnityEngine.UI;
+#pragma warning restore CS0234 // The type or namespace name 'UI' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)
 
 
 public class PuzzleGameController : MonoBehaviour {
@@ -11,11 +13,15 @@ public class PuzzleGameController : MonoBehaviour {
 	private int countGuess;
 
 	[SerializeField]
+#pragma warning disable CS0246 // The type or namespace name 'InputField' could not be found (are you missing a using directive or an assembly reference?)
 	private InputField input;
+#pragma warning restore CS0246 // The type or namespace name 'InputField' could not be found (are you missing a using directive or an assembly reference?)
 
 
 	[SerializeField]
+#pragma warning disable CS0246 // The type or namespace name 'Text' could not be found (are you missing a using directive or an assembly reference?)
 	private Text text;
+#pragma warning restore CS0246 // The type or namespace name 'Text' could not be found (are you missing a using directive or an assembly reference?)
 
 	void Awake () {
 		num = Random.Range (0, 100);

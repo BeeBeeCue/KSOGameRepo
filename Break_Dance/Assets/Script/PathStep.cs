@@ -28,11 +28,10 @@ public class PathStep : MonoBehaviour {
         }  
     }
 
-    public void SmallStep()
+    IEnumerable SmallStep()
     {
         if (this.transform.position == pathManager.Destination())
         {
-            Debug.Log(theWay + " the way is found here");
             pathManager.WayIsFound(theWay);
             iFindTheWay = true;
         }
@@ -73,9 +72,10 @@ public class PathStep : MonoBehaviour {
             stepRight.gameObject.SetActive(true);
             theWay = rememberTheWay;
         }
+        return null;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (pathManager.IsWayFound())
         {

@@ -18,11 +18,9 @@ public class Demon : MonoBehaviour
     public Transform upCheck, downCheck, leftCheck, rightCheck, centre;
     public LayerMask wall;
     private int counter;
-
     public string walking;
     private List<string> walkInstance;
     // when player enter detection zone
-
     private void OnCollisionStay2D(Collision2D collision)
     {
         if(collision.gameObject.name == "Player")
@@ -31,11 +29,11 @@ public class Demon : MonoBehaviour
             {
                 mode = false;
                 SetDestination(playerLastPosition.transform.position);
+                searching = true;
                 timer.DisAlarm();
             }
         }
     }
-
     //when player stays in detection zone
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -52,26 +50,21 @@ public class Demon : MonoBehaviour
             playerIsInTheZone = false; 
         }
     }
-    void SetDestination(Vector3 goal)
+
+    IEnumerable SetDestination(Vector3 goal)
     {
-        Debug.DrawLine(this.transform.position, goal);
-        counter = 0;
-        searching = true;
         walkInstance.Clear();
-        if (mode)
-        {
-            walkInstance = walking.Split(';').ToList();
-        }
-        else
-        {
-            pathFinder.FindingTheWay(goal, this.transform.position);
-            walkInstance = pathFinder.ShowMeTheWay().Split(';').ToList();
-        }
+        counter = 0;
+        pathFinder.FindingTheWay(goal, this.transform.position);
+        Debug.Log("the demon knows the way" + pathFinder.ShowMeTheWay());
+        walkInstance = pathFinder.ShowMeTheWay().Split(';').ToList();
         searching = false;
+        return null;
     }
 
     void Walk()
     {
+        Debug.Log("start chasing");
         Transform temp = leftCheck;
         walkDirection = walkInstance[counter];
         switch (walkDirection)
@@ -98,7 +91,7 @@ public class Demon : MonoBehaviour
         counter++;
         if (counter == walkInstance.Count)
         {
-            counter = 0;
+            mode = true;
         }
         //this is for flipping the sprite when the move left and right
         Vector3 localScale = transform.localScale;
@@ -120,21 +113,24 @@ public class Demon : MonoBehaviour
         look_right = true;
         mode = true;
         timer = GameObject.Find("Timer").GetComponent<Timer>();
-        playerLastPosition = GameObject.Find("PlayerLastKnownPosition").GetComponent<PlayerLastPosition>();
-        
+        playerLastPosition = GameObject.Find("PlayerLastKnownPosition").GetComponent<PlayerLastPosition>();    
     }
     // Update is called once per frames
     void Update()
     {
-        
-        if (playerLastPosition.IsPlayerSeen())
-        {
-            SetDestination(playerLastPosition.transform.position);
-        }
+        //if (playerLastPosition.IsPlayerSeen() && searching)
+        //{
+        //    SetDestination(playerLastPosition.transform.position);
+        //    searching = false;
+        //}
         if (timer.CountBeat() == 59)
         {
-            Walk();   
-        }  
+            if (!mode)
+            {
+                Walk();
+            }
+        }
+          
     }
 
 

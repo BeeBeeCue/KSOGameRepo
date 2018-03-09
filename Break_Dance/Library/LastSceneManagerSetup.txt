@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
 - path: Assets/GameScenes/SafePlace.unity
-=======
-- path: Assets/GameScenes/Puzzle.unity
->>>>>>> 3ce6ac78607fb49d7bc556ed8bcc1d441fbe79b2
   isLoaded: 1
   isActive: 1

@@ -23,9 +23,7 @@ public class PathFinder : MonoBehaviour
         theWayISFound = false;
         Instantiate(firstStep, startPoint, Quaternion.Euler(new Vector3(0,0,0)), this.transform);
         firstStep.theWay = null;
-        
         firstStep.gameObject.SetActive (true);
-        
     }
 
     public Vector3 Destination()

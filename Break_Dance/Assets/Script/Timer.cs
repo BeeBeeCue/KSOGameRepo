@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour {
     private int frames, second;
-    private Transform playerPosition;
+    private Vector3 playerPosition;
     private bool playerMissedBeat;
     private bool playerIsSeen;
     
@@ -36,22 +36,17 @@ public class Timer : MonoBehaviour {
         }
     }
 
-    public void LostPlayer()
-    {
-        playerPosition = null;
-    }
-
     public bool IsPlayerMissingABeat()
     {
         return playerMissedBeat;
     }
-    public void Alarm(Transform position)
+    public void Alarm(Vector3 position)
     {
         playerPosition = position;
         playerMissedBeat = true;
     }
     //line of sight method combo
-    public void SeenAlarm(Transform position)
+    public void SeenAlarm(Vector3 position)
     {
         playerIsSeen = true;
         playerPosition = position;
@@ -66,13 +61,14 @@ public class Timer : MonoBehaviour {
     {
         return playerIsSeen;
     }
-    //
+    //player no more miss his beat
 
     public void DisAlarm()
     {
         playerMissedBeat = false;
     }
-    public Transform PlayerWasAt()
+
+    public Vector3 PlayerWasAt()
     {
         return playerPosition;
     }

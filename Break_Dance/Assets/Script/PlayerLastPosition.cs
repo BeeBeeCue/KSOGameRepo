@@ -17,7 +17,7 @@ public class PlayerLastPosition : MonoBehaviour {
         if (timer.IsPlayerMissingABeat() && playerIsInTheZone)
         {
             temp = true;
-            transform.position = timer.PlayerWasAt().position;
+            transform.position = timer.PlayerWasAt();
             timer.DisAlarm();
         }
         return temp;
@@ -30,7 +30,8 @@ public class PlayerLastPosition : MonoBehaviour {
         if (timer.IsPlayerSeen())
         {
             temp = true;
-            transform.position = timer.PlayerWasAt().transform.position;
+            transform.position = timer.PlayerWasAt();
+            timer.SeenAlarmDisabled();
         }
         return temp;
     }

@@ -10,7 +10,15 @@ using System.Collections.Generic;
 namespace TMPro.Examples
 {
 
+#pragma warning disable CS0246 // The type or namespace name 'IPointerExitHandler' could not be found (are you missing a using directive or an assembly reference?)
+#pragma warning disable CS0246 // The type or namespace name 'IPointerClickHandler' could not be found (are you missing a using directive or an assembly reference?)
+#pragma warning disable CS0246 // The type or namespace name 'IPointerEnterHandler' could not be found (are you missing a using directive or an assembly reference?)
+#pragma warning disable CS0246 // The type or namespace name 'IPointerUpHandler' could not be found (are you missing a using directive or an assembly reference?)
     public class TMP_TextSelector_B : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IPointerUpHandler
+#pragma warning restore CS0246 // The type or namespace name 'IPointerUpHandler' could not be found (are you missing a using directive or an assembly reference?)
+#pragma warning restore CS0246 // The type or namespace name 'IPointerEnterHandler' could not be found (are you missing a using directive or an assembly reference?)
+#pragma warning restore CS0246 // The type or namespace name 'IPointerClickHandler' could not be found (are you missing a using directive or an assembly reference?)
+#pragma warning restore CS0246 // The type or namespace name 'IPointerExitHandler' could not be found (are you missing a using directive or an assembly reference?)
     {
         public RectTransform TextPopup_Prefab_01;
 
@@ -290,21 +298,27 @@ namespace TMPro.Examples
         }
 
 
+#pragma warning disable CS0246 // The type or namespace name 'PointerEventData' could not be found (are you missing a using directive or an assembly reference?)
         public void OnPointerEnter(PointerEventData eventData)
+#pragma warning restore CS0246 // The type or namespace name 'PointerEventData' could not be found (are you missing a using directive or an assembly reference?)
         {
             //Debug.Log("OnPointerEnter()");
             isHoveringObject = true;
         }
 
 
+#pragma warning disable CS0246 // The type or namespace name 'PointerEventData' could not be found (are you missing a using directive or an assembly reference?)
         public void OnPointerExit(PointerEventData eventData)
+#pragma warning restore CS0246 // The type or namespace name 'PointerEventData' could not be found (are you missing a using directive or an assembly reference?)
         {
             //Debug.Log("OnPointerExit()");
             isHoveringObject = false;
         }
 
 
+#pragma warning disable CS0246 // The type or namespace name 'PointerEventData' could not be found (are you missing a using directive or an assembly reference?)
         public void OnPointerClick(PointerEventData eventData)
+#pragma warning restore CS0246 // The type or namespace name 'PointerEventData' could not be found (are you missing a using directive or an assembly reference?)
         {
             //Debug.Log("Click at POS: " + eventData.position + "  World POS: " + eventData.worldPosition);
 
@@ -447,7 +461,9 @@ namespace TMPro.Examples
         }
 
 
+#pragma warning disable CS0246 // The type or namespace name 'PointerEventData' could not be found (are you missing a using directive or an assembly reference?)
         public void OnPointerUp(PointerEventData eventData)
+#pragma warning restore CS0246 // The type or namespace name 'PointerEventData' could not be found (are you missing a using directive or an assembly reference?)
         {
             //Debug.Log("OnPointerUp()");
         }

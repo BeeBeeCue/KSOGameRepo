@@ -11,29 +11,36 @@ public class PuzzleGameController : MonoBehaviour {
 	private int countGuess;
 
 	[SerializeField]
-	private InputField input;
+	private GameObject btn;
 
+	[SerializeField]
+	private InputField input;
 
 	[SerializeField]
 	private Text text;
 
+	//At start, generate a random number and then displays what the game requires i.e to guess a number between
 	void Awake () {
 		num = Random.Range (0, 100);
 		text.text = "Guess a number between 0 and 100";
+		Debug.Log (" The number is " + num);
+			}
 
-		//guessNumber = (int.Parse (guess));
-	}
-
+	//This controls the getting of input
 	public void GetInput (string guess) {
 		CompareGuesses (int.Parse (guess));
 		input.text = ("");
+		countGuess++;
 	}
 
+	//When you guess right or wrong , what happens
 	void CompareGuesses(int guess){
 
 
 		if (guess == num ) {
-		text.text= "You guessed correctly. The number was "+ guess;
+			text.text= "You guessed correctly. The number was "+ guess + ". You had to guess "+ countGuess +"x. Do you want to play again?";
+			//This boolean activates the play again button
+			btn.SetActive(true);
 		} 
 		else if (guess > num) {
 
@@ -44,7 +51,15 @@ public class PuzzleGameController : MonoBehaviour {
 
 			text.text= "The number we are looking for is greater than your guess";
 		}
-
-	
 	}
+
+	// the method that is executed when you wish to play again
+	public void PlayAgain (){
+		num = Random.Range (0, 100);
+		text.text = "Guess a number between 0 and 100";
+		countGuess = 0;
+		btn.SetActive(false);
+		Debug.Log (" The number is " + num);
+
+			}
 }

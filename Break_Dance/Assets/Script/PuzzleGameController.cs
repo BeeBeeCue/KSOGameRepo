@@ -13,13 +13,8 @@ public class PuzzleGameController : MonoBehaviour {
 	private int countGuess;
 
 	[SerializeField]
-<<<<<<< HEAD
-#pragma warning disable CS0246 // The type or namespace name 'InputField' could not be found (are you missing a using directive or an assembly reference?)
-	private InputField input;
-#pragma warning restore CS0246 // The type or namespace name 'InputField' could not be found (are you missing a using directive or an assembly reference?)
-=======
 	private GameObject btn;
->>>>>>> 293de21b6f2c7467dda3043f18b80c3f7cfdd7ec
+
 
 	[SerializeField]
 	private InputField input;

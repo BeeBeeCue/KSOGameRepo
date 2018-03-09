@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.Playables;
+#pragma warning disable CS0234 // The type or namespace name 'Timeline' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)
 using UnityEngine.Timeline;
+#pragma warning restore CS0234 // The type or namespace name 'Timeline' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)
 
 namespace Cinemachine.Timeline
 {
@@ -9,7 +11,9 @@ namespace Cinemachine.Timeline
         public CinemachineVirtualCameraBase VirtualCamera;
     }
 
+#pragma warning disable CS0246 // The type or namespace name 'IPropertyPreview' could not be found (are you missing a using directive or an assembly reference?)
     public sealed class CinemachineShot : PlayableAsset, IPropertyPreview
+#pragma warning restore CS0246 // The type or namespace name 'IPropertyPreview' could not be found (are you missing a using directive or an assembly reference?)
     {
         public ExposedReference<CinemachineVirtualCameraBase> VirtualCamera;
 
@@ -21,7 +25,9 @@ namespace Cinemachine.Timeline
         }
 
         // IPropertyPreview implementation
+#pragma warning disable CS0246 // The type or namespace name 'IPropertyCollector' could not be found (are you missing a using directive or an assembly reference?)
         public void GatherProperties(PlayableDirector director, IPropertyCollector driver)
+#pragma warning restore CS0246 // The type or namespace name 'IPropertyCollector' could not be found (are you missing a using directive or an assembly reference?)
         {
             driver.AddFromName<Transform>("m_LocalPosition.x");
             driver.AddFromName<Transform>("m_LocalPosition.y");

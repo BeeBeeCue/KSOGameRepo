@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+#pragma warning disable CS0234 // The type or namespace name 'UI' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)
 using UnityEngine.UI;
+#pragma warning restore CS0234 // The type or namespace name 'UI' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)
 using System.Collections;
 using TMPro;
 
@@ -10,7 +12,9 @@ public class ChatController : MonoBehaviour {
 
     public TMP_Text TMP_ChatOutput;
 
+#pragma warning disable CS0246 // The type or namespace name 'Scrollbar' could not be found (are you missing a using directive or an assembly reference?)
     public Scrollbar ChatScrollbar;
+#pragma warning restore CS0246 // The type or namespace name 'Scrollbar' could not be found (are you missing a using directive or an assembly reference?)
 
     void OnEnable()
     {

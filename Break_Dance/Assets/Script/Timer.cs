@@ -6,6 +6,7 @@ public class Timer : MonoBehaviour {
     private int frames, second;
     private Transform playerPosition;
     private bool playerMissedBeat;
+    private bool playerIsSeen;
     
 	// Use this for initialization
 	void Start ()
@@ -13,6 +14,7 @@ public class Timer : MonoBehaviour {
         frames = 0;
         second = 0;
         playerMissedBeat = false;
+        playerIsSeen = false;
     }
 	
 	// Update is called once per frame
@@ -27,7 +29,12 @@ public class Timer : MonoBehaviour {
                 second++;
                 break;
         }
-	}
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            playerMissedBeat = true;
+        }
+    }
 
     public void LostPlayer()
     {
@@ -38,13 +45,38 @@ public class Timer : MonoBehaviour {
     {
         return playerMissedBeat;
     }
-
     public void Alarm(Transform position)
     {
         playerPosition = position;
         playerMissedBeat = true;
     }
+    //line of sight method combo
+    public void SeenAlarm(Transform position)
+    {
+        playerIsSeen = true;
+        playerPosition = position;
+    }
 
+    public void SeenAlarmDisabled()
+    {
+        playerIsSeen = false;
+    }
+
+    public bool IsPlayerSeen()
+    {
+        return playerIsSeen;
+    }
+    //
+
+    public void DisAlarm()
+    {
+        playerMissedBeat = false;
+    }
+    public Transform PlayerWasAt()
+    {
+        return playerPosition;
+    }
+    
     public int CountBeat()
     {
         return frames;

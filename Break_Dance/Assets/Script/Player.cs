@@ -6,23 +6,18 @@ namespace AssemblyCSharp
 
     public class Player: MonoBehaviour
 	{
-        
-		public LayerMask wall, interactables;
+        public LayerMask wall, interactables;
 		RaycastHit2D wallCheck;
         public Transform upCheck, downCheck, leftCheck, rightCheck, centre;
         private Transform temp;
 		public float distance;
-		private bool _look_right;
-		private  bool playerMode = true;
+        private int delayedInput;
+		private bool _look_right, playerIsSeen;
+		private  bool playerMode = true, canMove;
 		private string playerAnswer, playerInput;
         private Timer timer;
         private AudioSource beat;
         //playerMode, true means player in movement mode, false = puzzle mode
-
-        public Player ()
-		{
-
-		}
         
 		//to set player mode
 		public void SetPlayerMode(string x)
@@ -57,27 +52,53 @@ namespace AssemblyCSharp
             playerAnswer = null;
         }
 
-		//player movement function, which teleports the player by a certain distance when pressing a button
-		//for moving player about
-		public void Move(string input)
+        private void OnCollisionStay2D(Collision2D collision)
+        {
+            if (collision.gameObject.name == "LineOSight")
+            {
+                wallCheck = Physics2D.Linecast(centre.transform.position, collision.transform.position, wall);
+                if(wallCheck.collider != null)
+                {
+                    playerIsSeen = false;
+                }
+                else
+                {
+                    playerIsSeen = true;
+                }
+                
+            }
+        }
+
+        private void OnCollisionExit2D(Collision2D collision)
+        {
+            if (collision.gameObject.name == "LineOSight")
+            {
+                playerIsSeen = false;
+            }
+        }
+
+
+        //player movement function, which teleports the player by a certain distance when pressing a button
+        //for moving player about
+        public void Move(string input)
 		{
 			
 			switch (input) 
 			{
 			case "up":
 				transform.position = new Vector2 (transform.position.x,(float)( transform.position.y+distance));
-				break;
+                break;
 			case "left":
 				transform.position = new Vector2 ((float)(transform.position.x - distance), transform.position.y);
-				_look_right = false;
+                _look_right = false;
 				break;
 			case "right":
 				transform.position = new Vector2 ((float)(transform.position.x + distance), transform.position.y);
-				_look_right = true;
+                _look_right = true;
 				break;
 			case "down":
 				transform.position = new Vector2 (transform.position.x,(float)( transform.position.y-distance));
-				break;
+                break;
 			}
             //frameDelay = timer.CountBeat();
             //player sprite flipping when turn left and right during movement
@@ -91,11 +112,13 @@ namespace AssemblyCSharp
 			}
 
 			transform.localScale = localScale;
-
 		}
         
 		void Start()
 		{
+            canMove = true;
+            Debug.Log("Game Start");
+            delayedInput = -1;
             _look_right = true;
             playerInput = null;
 			playerAnswer = null;
@@ -105,14 +128,17 @@ namespace AssemblyCSharp
         
 		void Update()
 		{
+            delayedInput = -1;
             if (timer.CountBeat() == 59)
             {
                 beat.Play();
+                canMove = true;
             }
-         	if (playerMode) 
+         	if (playerMode && canMove) 
 			{
 				if (Input.GetKeyDown (KeyCode.A)) {
 					wallCheck = Physics2D.Linecast (centre.transform.position, leftCheck.transform.position, wall);
+                    delayedInput = timer.CountBeat();
 					if (wallCheck.collider == null)
                     {
 						this.Move ("left");
@@ -120,7 +146,8 @@ namespace AssemblyCSharp
                     playerInput = "A";
 				} else if (Input.GetKeyDown (KeyCode.S)) {
 					wallCheck = Physics2D.Linecast (centre.transform.position, downCheck.transform.position, wall);
-					if (wallCheck.collider == null)
+                    delayedInput = timer.CountBeat();
+                    if (wallCheck.collider == null)
                     {
 						this.Move ("down");
                      }
@@ -128,7 +155,8 @@ namespace AssemblyCSharp
 
                 } else if (Input.GetKeyDown (KeyCode.D)) {
 					wallCheck = Physics2D.Linecast (centre.transform.position, rightCheck.transform.position, wall);
-					if (wallCheck.collider == null)
+                    delayedInput = timer.CountBeat();
+                    if (wallCheck.collider == null)
                     {
                         this.Move("right");
                     }
@@ -136,7 +164,8 @@ namespace AssemblyCSharp
 
                 } else if (Input.GetKeyDown (KeyCode.W)) {
 					wallCheck = Physics2D.Linecast (centre.transform.position, upCheck.transform.position, wall);
-					if (wallCheck.collider == null)
+                    delayedInput = timer.CountBeat();
+                    if (wallCheck.collider == null)
                     {
 						this.Move ("up");
                     }
@@ -165,15 +194,30 @@ namespace AssemblyCSharp
 				}
 			}
 
-            if (timer.CountBeat()>10 && timer.CountBeat()<55)
+            //when player misses his beat
+            if (delayedInput != -1)
             {
-                timer.Alarm(GetComponent<Transform>());
+                if (delayedInput > 10 && delayedInput < 55)
+                {
+                    timer.Alarm(GetComponent<Transform>());
+                    delayedInput = -1;
+                    canMove = false;
+                }
+                else
+                {
+                    timer.DisAlarm();
+                }
+                
             }
-            
-            Debug.DrawLine(centre.transform.position, leftCheck.transform.position);
-            Debug.DrawLine(centre.transform.position, upCheck.transform.position);
-            Debug.DrawLine(centre.transform.position, rightCheck.transform.position);
-            Debug.DrawLine(centre.transform.position, downCheck.transform.position);
+            //when player is in sight zone
+            if (playerIsSeen)
+            {
+                timer.SeenAlarm(GetComponent<Transform>());
+            }
+            else
+            {
+                timer.SeenAlarmDisabled();
+            }
         }
 	}
 

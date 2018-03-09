@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 
 
+
+
 namespace AssemblyCSharp
 {
 
@@ -16,10 +18,23 @@ namespace AssemblyCSharp
 		private  bool playerMode = true, canMove, playerLose;
 		private string playerAnswer, playerInput;
         private Timer timer;
+<<<<<<< HEAD
+        private int frameDelay;
+		//playerMode, true means player in movement mode, false = puzzle mode
+
+		public Player ()
+		{
+
+		}
+
+
+
+=======
         private AudioSource beat;
         
         //playerMode, true means player in movement mode, false = puzzle mode
         
+>>>>>>> 78ff8cf0105f8e83ba9fc0efc20a1e7cb0ebfedb
 		//to set player mode
         private void OnCollisionEnter2D(Collision2D collision)
         {
@@ -73,6 +88,9 @@ namespace AssemblyCSharp
         
 		void Update()
 		{
+<<<<<<< HEAD
+            if (playerMode && !PauseMenu.GameIsPaused) 
+=======
             delayedInput = -1;
             if (timer.CountBeat() == 59)
             {
@@ -80,6 +98,7 @@ namespace AssemblyCSharp
                 canMove = true;
             }
          	if (playerMode && canMove) 
+>>>>>>> 78ff8cf0105f8e83ba9fc0efc20a1e7cb0ebfedb
 			{
 				if (Input.GetKeyDown (KeyCode.A)) {
 					wallCheck = Physics2D.Linecast (centre.transform.position, leftCheck.transform.position, wall);

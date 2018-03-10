@@ -8,12 +8,12 @@ public class ButtonClick : MonoBehaviour {
     public AudioClip hover;
     public AudioClip click;
 
-    public void onHover()
+    public void OnHover()
     {
         source.PlayOneShot(hover);
     }
 
-    public void onClick()
+    public void OnClick()
     {
         source.PlayOneShot(click);
     }

@@ -7,6 +7,7 @@ public class Timer : MonoBehaviour {
     private Vector3 playerPosition;
     private bool playerMissedBeat;
     private bool playerIsSeen;
+    public int timeTilNextBeat;
     
 	// Use this for initialization
 	void Start ()
@@ -20,14 +21,10 @@ public class Timer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         frames++;
-        switch (frames)
+        if (frames == timeTilNextBeat)
         {
-            case 59:
-                break;
-            case 60:
-                frames = 0;
-                second++;
-                break;
+            frames = 0;
+            second++;
         }
 
         if (Input.GetKeyDown(KeyCode.Space))

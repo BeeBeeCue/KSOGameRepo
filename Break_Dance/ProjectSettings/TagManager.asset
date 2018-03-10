@@ -17,16 +17,10 @@ TagManager:
   - Wall
   - Player
   - Interactibles
-  - PlayerInteraction
-<<<<<<< HEAD
-  - LightSources
-  - LightObstacles
-  - AmbientLight
-=======
-  - Demon
   - 
   - 
->>>>>>> 78ff8cf0105f8e83ba9fc0efc20a1e7cb0ebfedb
+  - 
+  - 
   - 
   - 
   - 

@@ -8,12 +8,16 @@ public class Demon : MonoBehaviour
 {
     public PathFinder pathFinder;
     public int distance;
+    public int step;
     private Timer timer;
     
-    private bool mode; //true is patrol mode, false is chase mode
-    private bool look_right, playerIsInTheZone, searching;
+     //true is patrol mode, false is chase mode
+    private bool look_right, playerIsInTheZone, chasing, knowTheWay;
     private string walkDirection;
+    
+    private Vector3 originalLocation;
     private PlayerLastPosition playerLastPosition;
+    public GameObject capture;
     //private bool wallCheck;
     public Transform upCheck, downCheck, leftCheck, rightCheck, centre;
     public LayerMask wall;
@@ -25,12 +29,12 @@ public class Demon : MonoBehaviour
     {
         if(collision.gameObject.name == "Player")
         {
-            if (playerLastPosition.IsPlayerFaulting(playerIsInTheZone) && !searching)
+            if (playerLastPosition.IsPlayerFaulting(playerIsInTheZone))
             {
-                mode = false;
                 SetDestination(playerLastPosition.transform.position);
-                searching = true;
-                timer.DisAlarm();
+                chasing = true;
+                counter = 0;
+                
             }
         }
     }
@@ -51,20 +55,28 @@ public class Demon : MonoBehaviour
         }
     }
 
-    IEnumerable SetDestination(Vector3 goal)
+    void SetDestination(Vector3 goal)
     {
-        walkInstance.Clear();
-        counter = 0;
         pathFinder.FindingTheWay(goal, this.transform.position);
-        Debug.Log("the demon knows the way" + pathFinder.ShowMeTheWay());
-        walkInstance = pathFinder.ShowMeTheWay().Split(';').ToList();
-        searching = false;
-        return null;
+        knowTheWay = false;
     }
 
-    void Walk()
+    void FixedUpdate()
     {
-        Debug.Log("start chasing");
+        if (chasing && knowTheWay == false)
+        {
+            if (pathFinder.IsWayFound())
+            {
+                walkInstance.Clear();
+                walkInstance = pathFinder.ShowMeTheWay().Split(';').ToList();
+                knowTheWay = true;
+                capture.SetActive(true);
+            } 
+        }
+        
+    }
+    private void  Walk()
+    {
         Transform temp = leftCheck;
         walkDirection = walkInstance[counter];
         switch (walkDirection)
@@ -91,7 +103,10 @@ public class Demon : MonoBehaviour
         counter++;
         if (counter == walkInstance.Count)
         {
-            mode = true;
+           chasing = false;
+           counter = 0;
+           this.transform.position = originalLocation;
+            capture.SetActive(false);
         }
         //this is for flipping the sprite when the move left and right
         Vector3 localScale = transform.localScale;
@@ -107,14 +122,17 @@ public class Demon : MonoBehaviour
 
     void Start()
     {
+        chasing = false;
+        knowTheWay = false;
+        originalLocation = this.transform.position;
         counter = 0;
         walkInstance = walking.Split(';').ToList();
         playerIsInTheZone = false;
         look_right = true;
-        mode = true;
         timer = GameObject.Find("Timer").GetComponent<Timer>();
         playerLastPosition = GameObject.Find("PlayerLastKnownPosition").GetComponent<PlayerLastPosition>();    
     }
+
     // Update is called once per frames
     void Update()
     {
@@ -122,15 +140,22 @@ public class Demon : MonoBehaviour
         //{
         //    SetDestination(playerLastPosition.transform.position);
         //    searching = false;
-        //}
-        if (timer.CountBeat() == 59)
+        //}a
+        if (!PauseMenu.GameIsPaused)
         {
-            if (!mode)
+            if (timer.CountBeat() == (timer.timeTilNextBeat - 1))
             {
-                Walk();
+                if (chasing)
+                {
+                    for (int i = 0; i < step; i++)
+                    {
+                        Walk();
+                    }
+                    
+                }
+            
             }
         }
-          
     }
 
 

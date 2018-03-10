@@ -18,7 +18,7 @@ namespace AssemblyCSharp
 		private  bool playerMode = true, canMove, playerLose;
 		private string playerAnswer, playerInput;
         private Timer timer;
-<<<<<<< HEAD
+
         private int frameDelay;
 		//playerMode, true means player in movement mode, false = puzzle mode
 
@@ -26,15 +26,12 @@ namespace AssemblyCSharp
 		{
 
 		}
-
-
-
-=======
+        
         private AudioSource beat;
         
         //playerMode, true means player in movement mode, false = puzzle mode
         
->>>>>>> 78ff8cf0105f8e83ba9fc0efc20a1e7cb0ebfedb
+
 		//to set player mode
         private void OnCollisionEnter2D(Collision2D collision)
         {
@@ -88,96 +85,104 @@ namespace AssemblyCSharp
         
 		void Update()
 		{
-<<<<<<< HEAD
-            if (playerMode && !PauseMenu.GameIsPaused) 
-=======
-            delayedInput = -1;
-            if (timer.CountBeat() == 59)
+            if (!PauseMenu.GameIsPaused)
             {
-                beat.Play();
-                canMove = true;
-            }
-         	if (playerMode && canMove) 
->>>>>>> 78ff8cf0105f8e83ba9fc0efc20a1e7cb0ebfedb
-			{
-				if (Input.GetKeyDown (KeyCode.A)) {
-					wallCheck = Physics2D.Linecast (centre.transform.position, leftCheck.transform.position, wall);
-                    delayedInput = timer.CountBeat();
-					if (wallCheck.collider == null)
-                    {
-						this.Move ("left");
-					}
-                    playerInput = "A";
-				} else if (Input.GetKeyDown (KeyCode.S)) {
-					wallCheck = Physics2D.Linecast (centre.transform.position, downCheck.transform.position, wall);
-                    delayedInput = timer.CountBeat();
-                    if (wallCheck.collider == null)
-                    {
-						this.Move ("down");
-                     }
-                    playerInput = "S";
-
-                } else if (Input.GetKeyDown (KeyCode.D)) {
-					wallCheck = Physics2D.Linecast (centre.transform.position, rightCheck.transform.position, wall);
-                    delayedInput = timer.CountBeat();
-                    if (wallCheck.collider == null)
-                    {
-                        this.Move("right");
-                    }
-                    playerInput = "D";
-
-                } else if (Input.GetKeyDown (KeyCode.W)) {
-					wallCheck = Physics2D.Linecast (centre.transform.position, upCheck.transform.position, wall);
-                    delayedInput = timer.CountBeat();
-                    if (wallCheck.collider == null)
-                    {
-						this.Move ("up");
-                    }
-                    playerInput = "W";
-					
+                delayedInput = -1;
+                if (timer.CountBeat() == (timer.timeTilNextBeat-1))
+                {
+                    beat.Play();
+                    canMove = true;
                 }
-			} 
-			else if(!playerMode) 
-			{
-				if (Input.GetKeyDown (KeyCode.A)) 
-				{
-					playerAnswer += "A";
-				} 
-				else if (Input.GetKeyDown (KeyCode.S)) 
-				{
-					playerAnswer += "S";
-				} 
-				else if (Input.GetKeyDown (KeyCode.D)) 
-				{
-					playerAnswer += "D";
-				} 
-				else if (Input.GetKeyDown (KeyCode.W)) 
-				{
-					playerAnswer += "W";
-					
-				}
-			}
+                if (playerMode && canMove)
 
-            //when player misses his beat
-            if (delayedInput != -1)
-            {
-                PlayerGettingHeard();
+                {
+                    if (Input.GetKeyDown(KeyCode.A))
+                    {
+                        wallCheck = Physics2D.Linecast(centre.transform.position, leftCheck.transform.position, wall);
+                        delayedInput = timer.CountBeat();
+                        if (wallCheck.collider == null)
+                        {
+                            this.Move("left");
+                        }
+                        playerInput = "A";
+                    }
+                    else if (Input.GetKeyDown(KeyCode.S))
+                    {
+                        wallCheck = Physics2D.Linecast(centre.transform.position, downCheck.transform.position, wall);
+                        delayedInput = timer.CountBeat();
+                        if (wallCheck.collider == null)
+                        {
+                            this.Move("down");
+                        }
+                        playerInput = "S";
+
+                    }
+                    else if (Input.GetKeyDown(KeyCode.D))
+                    {
+                        wallCheck = Physics2D.Linecast(centre.transform.position, rightCheck.transform.position, wall);
+                        delayedInput = timer.CountBeat();
+                        if (wallCheck.collider == null)
+                        {
+                            this.Move("right");
+                        }
+                        playerInput = "D";
+
+                    }
+                    else if (Input.GetKeyDown(KeyCode.W))
+                    {
+                        wallCheck = Physics2D.Linecast(centre.transform.position, upCheck.transform.position, wall);
+                        delayedInput = timer.CountBeat();
+                        if (wallCheck.collider == null)
+                        {
+                            this.Move("up");
+                        }
+                        playerInput = "W";
+
+                    }
+                }
+                else if (!playerMode)
+                {
+                    if (Input.GetKeyDown(KeyCode.A))
+                    {
+                        playerAnswer += "A";
+                    }
+                    else if (Input.GetKeyDown(KeyCode.S))
+                    {
+                        playerAnswer += "S";
+                    }
+                    else if (Input.GetKeyDown(KeyCode.D))
+                    {
+                        playerAnswer += "D";
+                    }
+                    else if (Input.GetKeyDown(KeyCode.W))
+                    {
+                        playerAnswer += "W";
+
+                    }
+                }
+
+                //when player misses his beat
+                if (delayedInput != -1)
+                {
+                    PlayerGettingHeard();
+                }
+                //when player is in sight zone
+                //if (playerIsSeen)
+                //{
+                //    timer.SeenAlarm(transform.position);
+                //    delayedInput = -1;
+                //}
+                //else
+                //{
+                //    timer.SeenAlarmDisabled();
+                //}
             }
-            //when player is in sight zone
-            //if (playerIsSeen)
-            //{
-            //    timer.SeenAlarm(transform.position);
-            //    delayedInput = -1;
-            //}
-            //else
-            //{
-            //    timer.SeenAlarmDisabled();
-            //}
+
         }
 
         private void PlayerGettingHeard()
         {
-            if (delayedInput > 10 && delayedInput < 55)
+            if (delayedInput > 6 && delayedInput < (timer.timeTilNextBeat-6))
             {
                 timer.Alarm(transform.position);
                 delayedInput = -1;

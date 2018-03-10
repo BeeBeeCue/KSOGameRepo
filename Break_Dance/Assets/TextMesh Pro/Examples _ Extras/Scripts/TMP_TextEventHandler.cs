@@ -7,7 +7,11 @@ using System;
 namespace TMPro
 {
 
+#pragma warning disable CS0246 // The type or namespace name 'IPointerExitHandler' could not be found (are you missing a using directive or an assembly reference?)
+#pragma warning disable CS0246 // The type or namespace name 'IPointerEnterHandler' could not be found (are you missing a using directive or an assembly reference?)
     public class TMP_TextEventHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+#pragma warning restore CS0246 // The type or namespace name 'IPointerEnterHandler' could not be found (are you missing a using directive or an assembly reference?)
+#pragma warning restore CS0246 // The type or namespace name 'IPointerExitHandler' could not be found (are you missing a using directive or an assembly reference?)
     {
         [Serializable]
         public class CharacterSelectionEvent : UnityEvent<char, int> { }
@@ -178,13 +182,17 @@ namespace TMPro
         }
 
 
+#pragma warning disable CS0246 // The type or namespace name 'PointerEventData' could not be found (are you missing a using directive or an assembly reference?)
         public void OnPointerEnter(PointerEventData eventData)
+#pragma warning restore CS0246 // The type or namespace name 'PointerEventData' could not be found (are you missing a using directive or an assembly reference?)
         {
             //Debug.Log("OnPointerEnter()");
         }
 
 
+#pragma warning disable CS0246 // The type or namespace name 'PointerEventData' could not be found (are you missing a using directive or an assembly reference?)
         public void OnPointerExit(PointerEventData eventData)
+#pragma warning restore CS0246 // The type or namespace name 'PointerEventData' could not be found (are you missing a using directive or an assembly reference?)
         {
             //Debug.Log("OnPointerExit()");
         }

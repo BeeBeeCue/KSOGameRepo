@@ -6,7 +6,11 @@ using System.Collections;
 namespace TMPro.Examples
 {
 
+#pragma warning disable CS0246 // The type or namespace name 'IPointerExitHandler' could not be found (are you missing a using directive or an assembly reference?)
+#pragma warning disable CS0246 // The type or namespace name 'IPointerEnterHandler' could not be found (are you missing a using directive or an assembly reference?)
     public class TMP_TextSelector_A : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+#pragma warning restore CS0246 // The type or namespace name 'IPointerEnterHandler' could not be found (are you missing a using directive or an assembly reference?)
+#pragma warning restore CS0246 // The type or namespace name 'IPointerExitHandler' could not be found (are you missing a using directive or an assembly reference?)
     {
         private TextMeshPro m_TextMeshPro;
 
@@ -139,14 +143,18 @@ namespace TMPro.Examples
         }
 
 
+#pragma warning disable CS0246 // The type or namespace name 'PointerEventData' could not be found (are you missing a using directive or an assembly reference?)
         public void OnPointerEnter(PointerEventData eventData)
+#pragma warning restore CS0246 // The type or namespace name 'PointerEventData' could not be found (are you missing a using directive or an assembly reference?)
         {
             Debug.Log("OnPointerEnter()");
             m_isHoveringObject = true;
         }
 
 
+#pragma warning disable CS0246 // The type or namespace name 'PointerEventData' could not be found (are you missing a using directive or an assembly reference?)
         public void OnPointerExit(PointerEventData eventData)
+#pragma warning restore CS0246 // The type or namespace name 'PointerEventData' could not be found (are you missing a using directive or an assembly reference?)
         {
             Debug.Log("OnPointerExit()");
             m_isHoveringObject = false;

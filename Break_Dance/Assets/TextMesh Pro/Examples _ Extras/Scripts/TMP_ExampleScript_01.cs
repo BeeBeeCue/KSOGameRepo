@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+#pragma warning disable CS0234 // The type or namespace name 'UI' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)
 using UnityEngine.UI;
+#pragma warning restore CS0234 // The type or namespace name 'UI' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)
 using System.Collections;
 using TMPro;
 

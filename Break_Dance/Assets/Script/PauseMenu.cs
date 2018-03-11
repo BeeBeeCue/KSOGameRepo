@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject volumeUI;
     public GameObject controlsUI;
 
-
+	
 
 
 
@@ -52,14 +53,15 @@ public class PauseMenu : MonoBehaviour
             }
             else if (GameIsPaused == false)
             {
-                Pause();
+                Paused();
             }
         }
 
     }
 
+	
 
-    public void ExitCreditsMenu()
+	public void ExitCreditsMenu()
     {
         Time.timeScale = 0f;
         pauseMenuUI.SetActive(true);
@@ -93,15 +95,17 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
-        //AudioListener.pause = false;
-    }
-    public void Pause()
+		AudioListener.pause = false;
+		//AudioListener.pause = false;
+	}
+    public void Paused()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
-        //AudioListener.pause = true;
-    }
+		AudioListener.pause = true;
+		//AudioListener.pause = true;
+	}
     public void LoadMenu()
     {
         pauseMenuUI.SetActive(false);

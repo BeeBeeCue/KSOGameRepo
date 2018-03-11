@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 #pragma warning disable CS0234 // The type or namespace name 'UI' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)
 #pragma warning restore CS0234 // The type or namespace name 'UI' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)
 
@@ -8,8 +9,10 @@ public class Interactables : MonoBehaviour {
     private bool isBeingInteracted;
     Collider2D box;
     Animator anim;
-    public string puzzle;
+	[TextArea(8, 10)]
+	public string puzzle, display;
     public Light screenLight;
+	private bool puzzleIsSolved = false;
 		// Use this for initialization
 
 	//check if the player enter the puzzle zone
@@ -18,7 +21,7 @@ public class Interactables : MonoBehaviour {
 		if (collide.gameObject.name == "Player") 
 		{
             isBeingInteracted = true;
-			puzzleScreen.PuzzleDisplay(puzzle);
+			puzzleScreen.PuzzleDisplay(puzzle, display);
 		}
 	}
 
@@ -42,7 +45,13 @@ public class Interactables : MonoBehaviour {
                 anim.SetBool("on", false);
                 screenLight.intensity = 0;
                 puzzleScreen.PuzzleStop();
+				puzzleIsSolved = true;
             }
         }
+		
+		if (puzzleIsSolved == true)
+		{
+			Destroy(GameObject.Find("Door"));
+		}
 	}
 }

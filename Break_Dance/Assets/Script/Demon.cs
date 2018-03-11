@@ -34,7 +34,6 @@ public class Demon : MonoBehaviour
                 SetDestination(playerLastPosition.transform.position);
                 chasing = true;
                 counter = 0;
-                
             }
         }
     }

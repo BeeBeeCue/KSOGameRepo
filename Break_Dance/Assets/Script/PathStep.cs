@@ -28,7 +28,7 @@ public class PathStep : MonoBehaviour {
         }  
     }
 
-    IEnumerable SmallStep()
+    void SmallStep()
     {
         if (this.transform.position == pathManager.Destination())
         {
@@ -72,7 +72,7 @@ public class PathStep : MonoBehaviour {
             stepRight.gameObject.SetActive(true);
             theWay = rememberTheWay;
         }
-        return null;
+        //return null;
     }
 
     void FixedUpdate()
@@ -80,10 +80,9 @@ public class PathStep : MonoBehaviour {
         if (pathManager.IsWayFound())
         {
             Destroy(this.gameObject);
+            Debug.DrawLine(this.transform.position, pathManager.transform.position, Color.blue);
         }
         
-        Debug.DrawLine(this.transform.position, pathManager.transform.position, Color.blue);
-
         if (this.theWay == null)
         {
             Debug.DrawLine(this.transform.position, pathManager.Destination(), Color.red);

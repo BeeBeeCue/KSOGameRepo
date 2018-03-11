@@ -16,11 +16,18 @@ TagManager:
   - 
   - Walls
   - Interactibles
+<<<<<<< HEAD
   - Player
   - PlayerInteraction
   - 
   - 
   - 
+=======
+  - 
+  - 
+  - 
+  - 
+>>>>>>> df702d39bdf93b98bdd915ca4a4fdcb555e2ba89
   - 
   - 
   - 

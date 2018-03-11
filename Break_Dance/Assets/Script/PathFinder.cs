@@ -12,7 +12,7 @@ public class PathFinder : MonoBehaviour
 
     private void Awake()
     {
-        theWay = "x;x";
+        theWay = "a;d";
         theWayISFound = false;
     }
     public void FindingTheWay(Vector3 end, Vector3 start)
@@ -34,7 +34,6 @@ public class PathFinder : MonoBehaviour
     public void WayIsFound(string realWay)
     {
         theWay = realWay;
-        Debug.Log(theWay + "is true");
         theWayISFound = true;
     }
 
@@ -45,6 +44,7 @@ public class PathFinder : MonoBehaviour
 
     public string ShowMeTheWay()
     {
+        theWayISFound = false;
         return theWay;
     }
 

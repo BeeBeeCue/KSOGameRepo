@@ -24,6 +24,16 @@ public class Timer : MonoBehaviour {
 
 
 	// Update is called once per frame
+<<<<<<< HEAD
+	void Update () {
+        frames++;
+        if (frames == timeTilNextBeat)
+        {
+            frames = 0;
+            second++;
+        }
+    }
+=======
 	void Update()
 	{
 		frames++;
@@ -42,6 +52,7 @@ public class Timer : MonoBehaviour {
 			playerMissedBeat = true;
 		}
 	}
+>>>>>>> 14f77e9255d44c9ba28508002bea6d769e916b9b
 
 
 	public bool IsPlayerMissingABeat()

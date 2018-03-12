@@ -28,7 +28,7 @@ public class PathStep : MonoBehaviour {
         }  
     }
 
-    void SmallStep()
+    IEnumerable SmallStep()
     {
         if (this.transform.position == pathManager.Destination())
         {
@@ -72,7 +72,7 @@ public class PathStep : MonoBehaviour {
             stepRight.gameObject.SetActive(true);
             theWay = rememberTheWay;
         }
-        //return null;
+        return null;
     }
 
     void FixedUpdate()

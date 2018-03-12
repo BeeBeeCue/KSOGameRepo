@@ -142,7 +142,7 @@ public class Demon : MonoBehaviour
         //}a
         if (!PauseMenu.GameIsPaused)
         {
-            if (timer.CountBeat() == (timer.timeTilNextBeat - 1))
+
             {
                 if (chasing)
                 {

@@ -2,15 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-<<<<<<< HEAD
-public class Timer : MonoBehaviour
-{
-	private int frames, second;
-	private Vector3 playerPosition;
-	private bool playerMissedBeat;
-	private bool playerIsSeen;
 
-=======
 public class Timer : MonoBehaviour {
     private int frames, second;
     private Vector3 playerPosition;
@@ -18,7 +10,7 @@ public class Timer : MonoBehaviour {
     private bool playerIsSeen;
     public int timeTilNextBeat;
     
->>>>>>> df702d39bdf93b98bdd915ca4a4fdcb555e2ba89
+
 	// Use this for initialization
 	void Start()
 	{
@@ -32,7 +24,6 @@ public class Timer : MonoBehaviour {
 
 
 	// Update is called once per frame
-<<<<<<< HEAD
 	void Update()
 	{
 		frames++;
@@ -51,15 +42,7 @@ public class Timer : MonoBehaviour {
 			playerMissedBeat = true;
 		}
 	}
-=======
-	void Update () {
-        frames++;
-        if (frames == timeTilNextBeat)
-        {
-            frames = 0;
-            second++;
-        }
->>>>>>> df702d39bdf93b98bdd915ca4a4fdcb555e2ba89
+
 
 	public bool IsPlayerMissingABeat()
 	{

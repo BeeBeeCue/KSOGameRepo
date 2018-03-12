@@ -13,16 +13,15 @@ public class PuzzleGameController : MonoBehaviour
 
 	private int countGuess;
 
-<<<<<<< HEAD
+
 
 
 #pragma warning disable CS0246 // The type or namespace name 'InputField' could not be found (are you missing a using directive or an assembly reference?)
 
 #pragma warning restore CS0246 // The type or namespace name 'InputField' could not be found (are you missing a using directive or an assembly reference?)
 
-=======
+
 	[SerializeField]
->>>>>>> df702d39bdf93b98bdd915ca4a4fdcb555e2ba89
 	private GameObject btn;
 
 

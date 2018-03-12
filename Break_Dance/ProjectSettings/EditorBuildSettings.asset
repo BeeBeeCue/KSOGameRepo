@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/GameScenes/TheSafeZone.unity
     guid: fdf0843af15ad3040acf0aabe5d2c7cd
   - enabled: 1
+    path: Assets/GameScenes/Office_01_Intro.unity
+    guid: 4568ea4a7c78a80478c297913eae8407
+  - enabled: 1
     path: Assets/GameScenes/Office_01.unity
     guid: be5c90cc56689456ea534eb602c5e3f3
   - enabled: 0

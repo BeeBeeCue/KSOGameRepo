@@ -4,7 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Music
+  - MiniMapTag
   layers:
   - Default
   - TransparentFX
@@ -14,20 +14,13 @@ TagManager:
   - UI
   - 
   - 
-  - Walls
-  - Interactibles
-<<<<<<< HEAD
   - Player
-  - PlayerInteraction
+  - interactables
+  - Walls
+  - PlayerInteractions
+  - Wall
   - 
   - 
-  - 
-=======
-  - 
-  - 
-  - 
-  - 
->>>>>>> df702d39bdf93b98bdd915ca4a4fdcb555e2ba89
   - 
   - 
   - 

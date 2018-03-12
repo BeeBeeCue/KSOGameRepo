@@ -15,6 +15,7 @@ namespace AssemblyCSharp
 		public float distance;
 		private int delayedInput;
 		private bool _look_right, playerIsSeen;
+<<<<<<< HEAD
 		private bool playerMode = true, canMove, playerLose;
 		private string playerAnswer, playerInput;
 
@@ -30,10 +31,21 @@ namespace AssemblyCSharp
 		}
 
         
+=======
+        private int score;
+		private  bool playerMode = true, canMove, playerLose;
+		private string playerAnswer, playerInput;
+        private Timer timer;
+        private EndingCanvas endCanvas;
+        private int frameDelay;
+		//playerMode, true means player in movement mode, false = puzzle mode
+
+>>>>>>> e2a07157ee90701adbbc4a7ec5e0a1d074a73677
         private AudioSource beat;
         
         //playerMode, true means player in movement mode, false = puzzle mode
         
+<<<<<<< HEAD
 
 
 		//to set player mode
@@ -58,6 +70,31 @@ namespace AssemblyCSharp
 				{
 					playerIsSeen = true;
 				}
+=======
+		//to set player mode
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.name == "Capture")
+            {
+                playerLose = true;
+                endCanvas.score = score;
+                endCanvas.finish_game = false;
+                endCanvas.gameObject.SetActive(true);
+            }
+            else if (collision.gameObject.name == "Escape")
+            {
+
+            }
+            else if (collision.gameObject.name == "WinGame")
+            {
+                playerLose = false;
+                endCanvas.score = score;
+                endCanvas.finish_game = true;
+                endCanvas.gameObject.SetActive(true);
+            }
+
+        }
+>>>>>>> e2a07157ee90701adbbc4a7ec5e0a1d074a73677
 
 			}
 		}
@@ -83,10 +120,20 @@ namespace AssemblyCSharp
 			playerLose = false;
 			playerInput = null;
 			playerAnswer = null;
+<<<<<<< HEAD
 			timer = GameObject.Find("Timer").GetComponent<Timer>();
 			beat = GetComponent<AudioSource>();
 		}
 
+=======
+            timer = GameObject.Find("Timer").GetComponent<Timer>();
+            beat = GetComponent<AudioSource>();
+            endCanvas = GameObject.Find("EndingCanvas").GetComponent<EndingCanvas>();
+            score = 0;
+            endCanvas.gameObject.SetActive(false);
+        }
+        
+>>>>>>> e2a07157ee90701adbbc4a7ec5e0a1d074a73677
 		void Update()
 		{
 
@@ -182,13 +229,13 @@ namespace AssemblyCSharp
                 //    timer.SeenAlarmDisabled();
                 //}
             }
-
         }
 
         private void PlayerGettingHeard()
         {
             if (delayedInput > 1 && delayedInput < (timer.timeTilNextBeat-1))
             {
+                score = score - 25;
                 timer.Alarm(transform.position);
                 delayedInput = -1;
                 canMove = false;
@@ -201,7 +248,7 @@ namespace AssemblyCSharp
 
         private void Move(string input)
         {
-
+            score = score + 10;
             switch (input)
             {
                 case "up":

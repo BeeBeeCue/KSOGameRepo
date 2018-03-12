@@ -26,11 +26,6 @@ public class Timer : MonoBehaviour {
             frames = 0;
             second++;
         }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            playerMissedBeat = true;
-        }
     }
 
     public bool IsPlayerMissingABeat()

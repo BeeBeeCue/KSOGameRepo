@@ -6,15 +6,32 @@
 namespace AssemblyCSharp
 {
 
-    public class Player: MonoBehaviour
+	public class Player : MonoBehaviour
 	{
-        public LayerMask wall, interactables;
+		public LayerMask wall, interactables;
 		RaycastHit2D wallCheck;
-        public Transform upCheck, downCheck, leftCheck, rightCheck, centre;
-        private Transform temp;
+		public Transform upCheck, downCheck, leftCheck, rightCheck, centre;
+		private Transform temp;
 		public float distance;
-        private int delayedInput;
+		private int delayedInput;
 		private bool _look_right, playerIsSeen;
+<<<<<<< HEAD
+		private bool playerMode = true, canMove, playerLose;
+		private string playerAnswer, playerInput;
+
+		private Timer timer;
+
+		private int frameDelay;
+
+		//playerMode, true means player in movement mode, false = puzzle mode
+
+		public Player()
+		{
+
+		}
+
+        
+=======
         private int score;
 		private  bool playerMode = true, canMove, playerLose;
 		private string playerAnswer, playerInput;
@@ -23,10 +40,37 @@ namespace AssemblyCSharp
         private int frameDelay;
 		//playerMode, true means player in movement mode, false = puzzle mode
 
+>>>>>>> e2a07157ee90701adbbc4a7ec5e0a1d074a73677
         private AudioSource beat;
         
         //playerMode, true means player in movement mode, false = puzzle mode
         
+<<<<<<< HEAD
+
+
+		//to set player mode
+		private void OnCollisionEnter2D(Collision2D collision)
+		{
+			if (collision.gameObject.name == "Capture")
+			{
+				playerLose = true;
+			}
+		}
+
+		private void OnCollisionStay2D(Collision2D collision)
+		{
+			if (collision.gameObject.name == "LineOSight")
+			{
+				wallCheck = Physics2D.Linecast(centre.transform.position, collision.transform.position, wall);
+				if (wallCheck.collider != null)
+				{
+					playerIsSeen = false;
+				}
+				else
+				{
+					playerIsSeen = true;
+				}
+=======
 		//to set player mode
         private void OnCollisionEnter2D(Collision2D collision)
         {
@@ -50,28 +94,38 @@ namespace AssemblyCSharp
             }
 
         }
+>>>>>>> e2a07157ee90701adbbc4a7ec5e0a1d074a73677
 
-        private void OnCollisionExit2D(Collision2D collision)
-        {
-            if (collision.gameObject.name == "LineOSight")
-            {
-                playerIsSeen = false;
-            }
-        }
+			}
+		}
+
+		private void OnCollisionExit2D(Collision2D collision)
+		{
+			if (collision.gameObject.name == "LineOSight")
+			{
+				playerIsSeen = false;
+			}
+		}
 
 
-        //player movement function, which teleports the player by a certain distance when pressing a button
-        //for moving player about
-        
+		//player movement function, which teleports the player by a certain distance when pressing a button
+		//for moving player about
+
 		void Start()
 		{
-            canMove = true;
-            Debug.Log("Game Start");
-            delayedInput = -1;
-            _look_right = true;
-            playerLose = false;
-            playerInput = null;
+			canMove = true;
+			Debug.Log("Game Start");
+			delayedInput = -1;
+			_look_right = true;
+			playerLose = false;
+			playerInput = null;
 			playerAnswer = null;
+<<<<<<< HEAD
+			timer = GameObject.Find("Timer").GetComponent<Timer>();
+			beat = GetComponent<AudioSource>();
+		}
+
+=======
             timer = GameObject.Find("Timer").GetComponent<Timer>();
             beat = GetComponent<AudioSource>();
             endCanvas = GameObject.Find("EndingCanvas").GetComponent<EndingCanvas>();
@@ -79,8 +133,10 @@ namespace AssemblyCSharp
             endCanvas.gameObject.SetActive(false);
         }
         
+>>>>>>> e2a07157ee90701adbbc4a7ec5e0a1d074a73677
 		void Update()
 		{
+
             if (!PauseMenu.GameIsPaused)
             {
                 delayedInput = -1;
@@ -177,7 +233,7 @@ namespace AssemblyCSharp
 
         private void PlayerGettingHeard()
         {
-            if (delayedInput > 6 && delayedInput < (timer.timeTilNextBeat-6))
+            if (delayedInput > 1 && delayedInput < (timer.timeTilNextBeat-1))
             {
                 score = score - 25;
                 timer.Alarm(transform.position);
@@ -262,6 +318,7 @@ namespace AssemblyCSharp
         }
 
     }
+
 
 }
 

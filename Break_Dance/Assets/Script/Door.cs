@@ -6,7 +6,7 @@ public class Door : MonoBehaviour {
     private bool isBeingInteracted;
     Collider2D box;
     Animator anim;
-    public string puzzle;
+    public string puzzle, display;
     public string direction;
     public LayerMask layer;
     private int counter = 0;
@@ -23,7 +23,7 @@ public class Door : MonoBehaviour {
             if (counter == 2)
             {
                 isBeingInteracted = true;
-                puzzleScreen.PuzzleDisplay(puzzle);
+                puzzleScreen.PuzzleDisplay(puzzle, display);
             }
         }
     }

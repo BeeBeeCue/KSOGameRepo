@@ -81,5 +81,5 @@ MonoBehaviour:
   rememberTheWay: 
   wall:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1024
   step: {fileID: 114834792694483736}

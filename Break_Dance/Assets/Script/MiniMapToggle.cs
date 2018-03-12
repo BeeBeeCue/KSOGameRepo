@@ -3,29 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class MiniMapToggle : MonoBehaviour 
+public class MiniMapToggle : MonoBehaviour
 {
 
 	public bool mapActive = false;
 	public GameObject miniMapObject;
 
 
-    private void Start()
-    {
-        miniMapObject = GameObject.Find("MiniMapObject");
-
-
-
-    }
-
-    void Update()
+	private void Start()
 	{
-		
+		miniMapObject = GameObject.Find("MiniMapObject");
 
-        if (Input.GetKeyDown(KeyCode.M))
+
+
+	}
+
+	void Update()
+	{
+
+
+		if (Input.GetKeyDown(KeyCode.M))
 		{
-			
-            Debug.Log("I pressed M");
+
+			Debug.Log("I pressed M");
 			if (!mapActive)
 			{
 				Debug.Log("You pressed M");
@@ -35,7 +35,7 @@ public class MiniMapToggle : MonoBehaviour
 				return;
 			}
 
-            if (mapActive)
+			if (mapActive)
 			{
 				Debug.Log("You pressed M");
 				miniMapObject.SetActive(false);
@@ -43,14 +43,14 @@ public class MiniMapToggle : MonoBehaviour
 				Debug.Log("Map is off");
 				return;
 			}
-			
+
 		}
 
-		
+
 
 	}
-	
-	
+
+
 
 
 

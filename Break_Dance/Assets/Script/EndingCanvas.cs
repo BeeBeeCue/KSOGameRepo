@@ -26,11 +26,12 @@ public class EndingCanvas : MonoBehaviour {
         title_Text = GameObject.Find("Title").GetComponent<Text>();
         final_text = GameObject.Find("FinalText").GetComponent<Text>();
         data = GameObject.Find("DataManager").GetComponent<DatabaseManager>();
-        score = 0;
+        
         finish_game = false;
         mode = true;
-        color_one = text_array[0].color;
-        color_two = text_array[1].color;
+        color_one = text_array[1].color;
+        color_two = text_array[0].color;
+        text_array[0].color = color_one;
     }
 
     private void Start()

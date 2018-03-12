@@ -1,8 +1,5 @@
 ﻿using UnityEngine;
-
-
-
-
+using UnityEngine.SceneManagement;
 namespace AssemblyCSharp
 {
 
@@ -15,23 +12,6 @@ namespace AssemblyCSharp
 		public float distance;
 		private int delayedInput;
 		private bool _look_right, playerIsSeen;
-<<<<<<< HEAD
-		private bool playerMode = true, canMove, playerLose;
-		private string playerAnswer, playerInput;
-
-		private Timer timer;
-
-		private int frameDelay;
-
-		//playerMode, true means player in movement mode, false = puzzle mode
-
-		public Player()
-		{
-
-		}
-
-        
-=======
         private int score;
 		private  bool playerMode = true, canMove, playerLose;
 		private string playerAnswer, playerInput;
@@ -40,42 +20,14 @@ namespace AssemblyCSharp
         private int frameDelay;
 		//playerMode, true means player in movement mode, false = puzzle mode
 
->>>>>>> e2a07157ee90701adbbc4a7ec5e0a1d074a73677
         private AudioSource beat;
         
-        //playerMode, true means player in movement mode, false = puzzle mode
-        
-<<<<<<< HEAD
-
-
-		//to set player mode
-		private void OnCollisionEnter2D(Collision2D collision)
-		{
-			if (collision.gameObject.name == "Capture")
-			{
-				playerLose = true;
-			}
-		}
-
-		private void OnCollisionStay2D(Collision2D collision)
-		{
-			if (collision.gameObject.name == "LineOSight")
-			{
-				wallCheck = Physics2D.Linecast(centre.transform.position, collision.transform.position, wall);
-				if (wallCheck.collider != null)
-				{
-					playerIsSeen = false;
-				}
-				else
-				{
-					playerIsSeen = true;
-				}
-=======
-		//to set player mode
+        //when player enter certain zones, they will activate different script
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.name == "Capture")
             {
+                //when the player is in the 'capture' zone, the ending scene will play
                 playerLose = true;
                 endCanvas.score = score;
                 endCanvas.finish_game = false;
@@ -83,10 +35,14 @@ namespace AssemblyCSharp
             }
             else if (collision.gameObject.name == "Escape")
             {
+				Debug.Log("enter");
+				
+				//when the player is in the escape zone, they will get to the next level
 
-            }
+			}
             else if (collision.gameObject.name == "WinGame")
             {
+                //when the player is in the win zone, the ending scene will play, and player win the game
                 playerLose = false;
                 endCanvas.score = score;
                 endCanvas.finish_game = true;
@@ -94,24 +50,28 @@ namespace AssemblyCSharp
             }
 
         }
->>>>>>> e2a07157ee90701adbbc4a7ec5e0a1d074a73677
+		private void OnCollisionStay2D(Collision2D collision)
+		{
+			if (collision.gameObject.name == "Escape")
+			{
+				Debug.Log("enterStay");
+				SceneManager.LoadScene("WinScene");
+				//when the player is in the escape zone, they will get to the next level
 
 			}
 		}
 
 		private void OnCollisionExit2D(Collision2D collision)
 		{
+            //the line of sight detection, this was scrapped
 			if (collision.gameObject.name == "LineOSight")
 			{
 				playerIsSeen = false;
 			}
 		}
-
-
-		//player movement function, which teleports the player by a certain distance when pressing a button
-		//for moving player about
-
-		void Start()
+        
+		
+        void Start()
 		{
 			canMove = true;
 			Debug.Log("Game Start");
@@ -120,12 +80,6 @@ namespace AssemblyCSharp
 			playerLose = false;
 			playerInput = null;
 			playerAnswer = null;
-<<<<<<< HEAD
-			timer = GameObject.Find("Timer").GetComponent<Timer>();
-			beat = GetComponent<AudioSource>();
-		}
-
-=======
             timer = GameObject.Find("Timer").GetComponent<Timer>();
             beat = GetComponent<AudioSource>();
             endCanvas = GameObject.Find("EndingCanvas").GetComponent<EndingCanvas>();
@@ -133,24 +87,28 @@ namespace AssemblyCSharp
             endCanvas.gameObject.SetActive(false);
         }
         
->>>>>>> e2a07157ee90701adbbc4a7ec5e0a1d074a73677
+
 		void Update()
 		{
-
-            if (!PauseMenu.GameIsPaused)
+            if (!PauseMenu.GameIsPaused) 
             {
+                //chekcing if the game is paused so that the player does not move when the pause menu is on
                 delayedInput = -1;
                 if (timer.CountBeat() == (timer.timeTilNextBeat-1))
                 {
+                    //this is to signal when the beat is play, after every period of timeTilNextBeat
                     beat.Play();
                     canMove = true;
                 }
                 if (playerMode && canMove)
-
+                //playerMode is true means player in movement mode, and canMove signals player has not missbeat
+                //the wallchecks are to check if there be any obstacle, aka wall in the direction the player is moving,
+                //so that the player does not 'walk' into walls
                 {
                     if (Input.GetKeyDown(KeyCode.A))
                     {
                         wallCheck = Physics2D.Linecast(centre.transform.position, leftCheck.transform.position, wall);
+                        
                         delayedInput = timer.CountBeat();
                         if (wallCheck.collider == null)
                         {
@@ -194,6 +152,7 @@ namespace AssemblyCSharp
                 }
                 else if (!playerMode)
                 {
+                    //!playerMode is the puzzleInput mode for the player
                     if (Input.GetKeyDown(KeyCode.A))
                     {
                         playerAnswer += "A";
@@ -216,6 +175,7 @@ namespace AssemblyCSharp
                 //when player misses his beat
                 if (delayedInput != -1)
                 {
+                    //this check if the player miss the beat
                     PlayerGettingHeard();
                 }
                 //when player is in sight zone
@@ -233,8 +193,9 @@ namespace AssemblyCSharp
 
         private void PlayerGettingHeard()
         {
-            if (delayedInput > 1 && delayedInput < (timer.timeTilNextBeat-1))
+            if (delayedInput > 10 && delayedInput < (timer.timeTilNextBeat-10))
             {
+				Debug.Log("missed beat");
                 score = score - 25;
                 timer.Alarm(transform.position);
                 delayedInput = -1;
@@ -248,6 +209,8 @@ namespace AssemblyCSharp
 
         private void Move(string input)
         {
+            //player movement function, which teleports the player by a certain distance when pressing a button
+            //for moving player about
             score = score + 10;
             switch (input)
             {
@@ -282,6 +245,7 @@ namespace AssemblyCSharp
 
         public void SetPlayerMode(string x)
         {
+            //function to set player mode, move mode and puzzle mode
             switch (x)
             {
                 case "move":
@@ -297,23 +261,28 @@ namespace AssemblyCSharp
         }
         public string GetAnswer()
         {
+            //return player input when in puzzle mode
             return playerAnswer;
         }
         public string GetPlayerInput()
         {
+            //get playerInput, playerAnswer = null is to delete the answer
             playerAnswer = null;
             return playerInput;
         }
         public void NullInput()
         {
+            //null the playerInput
             playerInput = null;
         }
         public void NullAnswer()
         {
+            //null the playerAnswer
             playerAnswer = null;
         }
         public bool DidPlayerLose()
         {
+            //return condition if the player lose or not
             return playerLose;
         }
 

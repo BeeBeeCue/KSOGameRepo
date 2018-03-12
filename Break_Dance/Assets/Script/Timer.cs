@@ -19,13 +19,11 @@ public class Timer : MonoBehaviour {
 		playerMissedBeat = false;
 		playerIsSeen = false;
 	}
-
-
-
-
+    
 	// Update is called once per frame
-<<<<<<< HEAD
+
 	void Update () {
+        //count the frames in the game, which dictates whether the player moves according to the beat and signal the demon to move
         frames++;
         if (frames == timeTilNextBeat)
         {
@@ -33,30 +31,12 @@ public class Timer : MonoBehaviour {
             second++;
         }
     }
-=======
-	void Update()
-	{
-		frames++;
-		switch (frames)
-		{
-			case 59:
-				break;
-			case 60:
-				frames = 0;
-				second++;
-				break;
-		}
 
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			playerMissedBeat = true;
-		}
-	}
->>>>>>> 14f77e9255d44c9ba28508002bea6d769e916b9b
 
 
 	public bool IsPlayerMissingABeat()
 	{
+        //return a bool signaling whether the player is missing a beat or not
 		return playerMissedBeat;
 	}
 	public void Alarm(Vector3 position)
@@ -64,7 +44,7 @@ public class Timer : MonoBehaviour {
 		playerPosition = position;
 		playerMissedBeat = true;
 	}
-	//line of sight method combo
+	//line of sight method combo, this was actually scapped
 	public void SeenAlarm(Vector3 position)
 	{
 		playerIsSeen = true;
@@ -80,20 +60,23 @@ public class Timer : MonoBehaviour {
 	{
 		return playerIsSeen;
 	}
-	//player no more miss his beat
+	
 
 	public void DisAlarm()
 	{
-		playerMissedBeat = false;
+        //player no more miss his beat so the alarms
+        playerMissedBeat = false;
 	}
 
 	public Vector3 PlayerWasAt()
 	{
+        //send the player position over
 		return playerPosition;
 	}
 
 	public int CountBeat()
 	{
+        //return the frame count to other classes
 		return frames;
 	}
 }

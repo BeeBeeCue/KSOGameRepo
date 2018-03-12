@@ -23,9 +23,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/GameScenes/Office_01.unity
     guid: be5c90cc56689456ea534eb602c5e3f3
+  - enabled: 1
+    path: Assets/GameScenes/WinScene.unity
+    guid: 8052a3250d390e34a8f90e6fd1c88a56
   - enabled: 0
     path: Assets/GameScenes/Test Scene.unity
     guid: c12d1028b1a3f7544a04e3161df64dd6
   - enabled: 0
     path: Assets/GameScenes/SafePlace.unity
     guid: bbd9818a6f73f2842b66598d4db221a4
+  - enabled: 1
+    path: Assets/GameScenes/LoseScene.unity
+    guid: 960f0ba73eb36da4da0dd09993d7c287
+  - enabled: 1
+    path: Assets/GameScenes/WinScoreEnter.unity
+    guid: 08e88f207b4cd39458a9c2375cf0af4e

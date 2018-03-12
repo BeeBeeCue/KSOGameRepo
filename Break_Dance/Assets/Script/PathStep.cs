@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using AssemblyCSharp;
 
+//this class is not featured in the final game
+//The function is to search for a certain position, and then return a string used for navigation from one point to another
 public class PathStep : MonoBehaviour {
 
     private bool iFindTheWay;
@@ -27,7 +29,9 @@ public class PathStep : MonoBehaviour {
             SmallStep();
         }  
     }
-
+    //this is main function of pathStep, which spawn inumerable objects around if there are no walls in the vicinity
+    //the spawned objects will go on doing the same thing until one of their location is next to the player
+    //along with each object is a string that show how to get to the starting point to its position
     IEnumerable SmallStep()
     {
         if (this.transform.position == pathManager.Destination())
@@ -75,6 +79,7 @@ public class PathStep : MonoBehaviour {
         return null;
     }
 
+    //when the way is found, these spawned objects will be destroyed
     void FixedUpdate()
     {
         if (pathManager.IsWayFound())
@@ -88,10 +93,4 @@ public class PathStep : MonoBehaviour {
             Debug.DrawLine(this.transform.position, pathManager.Destination(), Color.red);
         }
     }
-
-
-
-
-    // Update is called once per frame
-
 }

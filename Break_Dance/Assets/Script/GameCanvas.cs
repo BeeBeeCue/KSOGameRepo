@@ -15,6 +15,7 @@ public class GameCanvas : MonoBehaviour
 	private Player player;
 	private string display;
 
+    //Game canvas is to display the puzzle from the terminals
 	void Start()
 	{
 		puzzleText = GameObject.Find("PuzzleText").GetComponent<Text>();
@@ -22,6 +23,8 @@ public class GameCanvas : MonoBehaviour
 		player.SetPlayerMode("move");
 	}
 
+    //The game canvas gets the signal form the terminal, which will set the Player into puzzleMode
+    //and display the puzzle onto the screen
 	public void PuzzleDisplay(string puzzle, string display)
 	{
 		player.SetPlayerMode("puzzle");
@@ -29,6 +32,7 @@ public class GameCanvas : MonoBehaviour
 		puzzleText.text = display;
 	}
 	
+    //The puzzle gets the puzzle from the player, and compare it the correct answer
 	public bool SolvePuzzle()
 	{
 		bool temp = false;
@@ -43,19 +47,15 @@ public class GameCanvas : MonoBehaviour
 					puzzleText.text = "You are correct";
 					player.SetPlayerMode("move");
 					temp = true;
-					
 				}
 				else
 				{
 					Debug.Log(player.GetAnswer());
 					puzzleText.text = "You are incorrect,\r\n " +
 						"back to Timo L! ";// + puzzleAnswer;
-					
 					StartCoroutine(DelayForPuzzle());
-
 					player.SetPlayerMode("puzzle");
 					temp = false;
-					
 				}
 			}
 
@@ -63,13 +63,13 @@ public class GameCanvas : MonoBehaviour
 		return temp;
 	}
 
-
-
+    //stop displaying the puzzle
 	public void PuzzleStop()
 	{
 		puzzleText.text = null;
 	}
 
+    //this is signal from the terminals awaiting answer from the player
 	public bool AwaitingInteraction(string text)
 	{
 		player.NullAnswer();
@@ -81,9 +81,7 @@ public class GameCanvas : MonoBehaviour
 		player.NullInput();
 		return temp;
 	}
-
-
-
+    
 	IEnumerator DelayForPuzzle()
 	{
 

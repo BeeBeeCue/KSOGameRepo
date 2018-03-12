@@ -26,7 +26,6 @@ public class Interactables : MonoBehaviour {
 	}
 
     //return the state of the puzzle whether it is being interacted with or not
-
     void Start () {
 		puzzleScreen = GameObject.Find ("PuzzleScreen").GetComponent<GameCanvas> ();
         anim = GetComponent<Animator>();

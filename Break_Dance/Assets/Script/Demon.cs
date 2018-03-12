@@ -12,7 +12,7 @@ public class Demon : MonoBehaviour
     private Timer timer;
     
      //true is patrol mode, false is chase mode
-    private bool look_right, playerIsInTheZone, chasing, knowTheWay;
+    private bool look_right, playerIsInTheZone, chasing;
     private string walkDirection;
     
     private Vector3 originalLocation;
@@ -24,7 +24,9 @@ public class Demon : MonoBehaviour
     private int counter;
     public string walking;
     private List<string> walkInstance;
-    // when player enter detection zone
+    
+    // when player enter detection zone, the demon will ask theLastKnownPosition if the player is missing a beat or not
+    //if he is, the demon will go into chase mode and chase after the player (relentlessly)
     private void OnCollisionStay2D(Collision2D collision)
     {
         if(collision.gameObject.name == "Player")
@@ -32,7 +34,6 @@ public class Demon : MonoBehaviour
             if (playerLastPosition.IsPlayerFaulting(playerIsInTheZone))
             {
                 SetDestination(playerLastPosition.transform.position);
-                chasing = true;
                 counter = 0;
             }
         }
@@ -54,26 +55,31 @@ public class Demon : MonoBehaviour
         }
     }
 
+    //this is to get the path for the demon to walk to the player, which is calculated from the PathFInder
     void SetDestination(Vector3 goal)
     {
-        pathFinder.FindingTheWay(goal, this.transform.position);
-        knowTheWay = false;
+        walkInstance.Clear();
+        walkInstance = pathFinder.FindingTheWay(goal, this.transform.position).Split(';').ToList();
+        capture.SetActive(true);
+        chasing = true;
     }
 
-    void FixedUpdate()
-    {
-        if (chasing && knowTheWay == false)
-        {
-            if (pathFinder.IsWayFound())
-            {
-                walkInstance.Clear();
-                walkInstance = pathFinder.ShowMeTheWay().Split(';').ToList();
-                knowTheWay = true;
-                capture.SetActive(true);
-            } 
-        }
-        
-    }
+    //void FixedUpdate()
+    //{
+    //    if (chasing && knowTheWay == false)
+    //    {
+    //        if (pathFinder.IsWayFound())
+    //        {
+    //            walkInstance.Clear();
+    //            walkInstance = pathFinder.ShowMeTheWay().Split(';').ToList();
+    //            knowTheWay = true;
+    //            capture.SetActive(true);
+    //        } 
+    //    }
+    //}
+
+    //the function for Demon movement, similar to player's movement, 
+    //except for the wall checking, the demon is gonna go through wall
     private void  Walk()
     {
         Transform temp = leftCheck;
@@ -105,7 +111,7 @@ public class Demon : MonoBehaviour
            chasing = false;
            counter = 0;
            this.transform.position = originalLocation;
-            capture.SetActive(false);
+           capture.SetActive(false);
         }
         //this is for flipping the sprite when the move left and right
         Vector3 localScale = transform.localScale;
@@ -122,7 +128,6 @@ public class Demon : MonoBehaviour
     void Start()
     {
         chasing = false;
-        knowTheWay = false;
         originalLocation = this.transform.position;
         counter = 0;
         walkInstance = walking.Split(';').ToList();
@@ -140,19 +145,17 @@ public class Demon : MonoBehaviour
         //    SetDestination(playerLastPosition.transform.position);
         //    searching = false;
         //}a
-        if (!PauseMenu.GameIsPaused)
-        {
 
+        //if the game paused from the pause menu, the demon will stop chasing
+        //the demon moves to the beat, each time the beat reaches the threshold, it will move
+        if (!PauseMenu.GameIsPaused)
+        {            
+            if (chasing && (timer.CountBeat() == timer.timeTilNextBeat-1))
             {
-                if (chasing)
+                for (int i = 0; i < step; i++)
                 {
-                    for (int i = 0; i < step; i++)
-                    {
-                        Walk();
-                    }
-                    
+                    Walk();
                 }
-            
             }
         }
     }

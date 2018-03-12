@@ -12,6 +12,8 @@ public class Door : MonoBehaviour {
     private int counter = 0;
     // Use this for initialization
 
+    //Door is similar to interactibles, but the player interacts with them afar instead of walk into them
+    //like the terminals.
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.name == "UpCheck"  && isBeingInteracted == false)

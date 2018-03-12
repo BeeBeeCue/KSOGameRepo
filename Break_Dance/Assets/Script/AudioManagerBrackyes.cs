@@ -23,6 +23,7 @@ public class AudioManagerBrackyes : MonoBehaviour
 			DontDestroyOnLoad(gameObject);
 		}
 
+		//Finds sounds, outputs to mixer group
 		foreach (Sound s in sounds)
 		{
 			s.source = gameObject.AddComponent<AudioSource>();
@@ -33,6 +34,7 @@ public class AudioManagerBrackyes : MonoBehaviour
 		}
 	}
 
+	//Finds the sounds in an array and playes it
 	public void Play(string sound)
 	{
 		Sound s = Array.Find(sounds, item => item.name == sound);
@@ -41,7 +43,7 @@ public class AudioManagerBrackyes : MonoBehaviour
 			Debug.LogWarning("Sound: " + name + " not found!");
 			return;
 		}
-
+		//Gives the audio a random volume and pitch range, if desired effect.
 		s.source.volume = s.volume * (1f + UnityEngine.Random.Range(-s.volumeVariance / 2f, s.volumeVariance / 2f));
 		s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
 

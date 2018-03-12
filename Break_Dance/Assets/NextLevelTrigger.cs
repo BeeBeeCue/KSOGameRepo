@@ -14,7 +14,7 @@ public class NextLevelTrigger : MonoBehaviour
 	}
 	
 
-	
+	//waits 2 sec then loads the next scene
 	IEnumerator Leveltrigger ()
 	{
 		

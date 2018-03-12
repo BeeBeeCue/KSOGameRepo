@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//NOT USED
 [System.Serializable]
 public class Dialogue
 {

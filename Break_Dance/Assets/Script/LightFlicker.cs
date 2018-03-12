@@ -16,7 +16,7 @@ public class LightFlicker : MonoBehaviour {
 
 
 
-
+			//randomly turns the ligts on and off
 			if (Random.value > 0.9) //a random chance
 			{
 				if (GetComponent<Light>().enabled == true) //if the light is on...

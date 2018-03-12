@@ -5,6 +5,9 @@ using UnityEngine.UI;
 #pragma warning restore CS0234 // The type or namespace name 'UI' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)
 using UnityEngine;
 
+
+
+//CODE NOT USED
 public class BlinkingText : MonoBehaviour
 {
     //Text text;

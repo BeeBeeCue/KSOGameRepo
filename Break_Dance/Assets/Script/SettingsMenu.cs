@@ -9,6 +9,8 @@ public class SettingsMenu : MonoBehaviour
 
     public AudioMixer audioMixer;
 
+
+	//2 different audio channels that both go through the master channel
 	public void SetMasterVolume (float masterVolume)
     {
         audioMixer.SetFloat("masterVolume", masterVolume);

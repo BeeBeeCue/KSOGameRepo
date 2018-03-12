@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class StartOffice : MonoBehaviour {
 
+	//Load nexxt scene
 	public void LoadNextScene()
 	{
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

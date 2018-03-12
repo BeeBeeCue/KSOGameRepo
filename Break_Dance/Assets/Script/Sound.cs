@@ -6,6 +6,8 @@ public class Sound {
 
 	public string name;
 
+
+
 	public AudioClip clip;
     //Set volume for clip
 	[Range(0f, 1f)]

@@ -27,7 +27,8 @@ public class PauseMenu : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   //checks for cases where you are in the main menu 
+		//and decided where to go next after your button push
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Debug.Log("ESC pressed");
@@ -59,6 +60,9 @@ public class PauseMenu : MonoBehaviour
 
     }
 
+	//what to do for each condition
+	//usually it is stop/start time and stop/start audio
+	//and open different objects or different scenes depending what you push.
 	
 
 	public void ExitCreditsMenu()

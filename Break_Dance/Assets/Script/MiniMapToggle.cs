@@ -9,7 +9,7 @@ public class MiniMapToggle : MonoBehaviour
 	public bool mapActive = false;
 	public GameObject miniMapObject;
 
-
+	//finds the minimap object
 	private void Start()
 	{
 		miniMapObject = GameObject.Find("MiniMapObject");
@@ -21,7 +21,7 @@ public class MiniMapToggle : MonoBehaviour
 	void Update()
 	{
 
-
+		//if m is pressed either turn on or off the minimap
 		if (Input.GetKeyDown(KeyCode.M))
 		{
 
